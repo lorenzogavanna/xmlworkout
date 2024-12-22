@@ -1,6 +1,8 @@
 body {
+	
     font-family: Arial, sans-serif;
     background-color: #f7f9fc;
+    font-size:14px;
     color: #333;
     margin: 0;
     padding: 20px;
@@ -38,7 +40,7 @@ label {
 }
 
 input[type="text"], input[type="number"], select {
-    font-size: 14px;
+    /*font-size: 14px;*/
     padding: 8px;
     margin: 5px 0;
     border: 1px solid #dcdfe6;
@@ -57,7 +59,7 @@ div.type-selector {
 }
 
 select {
-    font-size: 14px;
+    /*font-size: 14px;*/
     padding: 8px;
     margin: 5px 0;
     border: 1px solid #dcdfe6;
@@ -71,7 +73,7 @@ button {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    /*font-size: 14px;*/
     margin: 5px 2px;
     transition: background-color 0.3s ease;
 }
