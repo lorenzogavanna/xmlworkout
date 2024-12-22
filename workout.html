@@ -101,9 +101,9 @@
 				<label for="ckPelotonResistance">Peloton Resistance</label>
 				<input type="number" id="requested_peloton_resistance" name="requested_peloton_resistance" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('requested_peloton_resistance',300)" style="width: 4ch; visibility: hidden" value="0">
 				<br>
-				
-				<input type="checkbox" id="ckRamp" name="ckRamp" onchange="tgHide('ramp')">
 				<label for="ramp">Ramp</label>
+				<input type="checkbox" id="ckRamp" name="ckRamp" onchange="tgHide('ramp')">
+
 				<input type="number" id="rampfrom" name="rampfrom" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampfrom',100)" style="width: 4ch; visibility: hidden" value="0">
 				<input type="number" id="rampto" name="rampto" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampto',100)" style="width: 4ch; visibility: hidden" value="0">
 				<br>
