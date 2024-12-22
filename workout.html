@@ -26,7 +26,7 @@
 		  <label for="distanceType">Distance</label>
 		<div class="type-selector" id="distanceDiv" style="display: none">
 			<label for="distance">Distance (km)</label>
-			<input type="number" id="distance" name="distance" inputmode="numeric" pattern="\d*" oninput="ckMax('distance',100)" style="width: 5ch;" value="1">
+			<input type="number" id="distance" name="distance" inputmode="numeric" pattern="\d*" oninput="ckMax('distance',1000)" style="width: 8ch;" value="1">
 		</div>
 		<div class="type-selector" id="durationDiv">
 			<label for="hours">Duration</label>
@@ -84,6 +84,17 @@
 				<label for="ckFanspeed">Fanspeed</label>
 				<input type="number" id="fanspeed" name="fanspeed" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('fanspeed',100)" style="width: 4ch; visibility: hidden" value="0">
 				<br>
+				<input type="checkbox" id="ckRamp" name="ckRamp" onchange="tgHide('rampsDiv','rampfrom','rampto')">
+				<label for="ckRamp">Ramp</label>
+				<input type="number" id="rampfrom" name="rampfrom" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampfrom',100)" style="width: 7ch; visibility: hidden" value="0">
+				<input type="number" id="rampto" name="rampto" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampto',100)" style="width: 7ch; visibility: hidden" value="0">
+				<br>
+				<div id="rampsDiv" style="visibility: hidden">
+			  	<input type="radio" id="powerzoneramp" name="ramps" value="powerzoneramp" checked>
+			  	<label for="powerzoneramp">Powerzone %</label>
+         		 	<input type="radio" id="speedramp" name="ramps" value="speedramp">
+			  	<label for="speedramp">Speed</label>
+        			</div>
 			</div>
 			<div id="bikeDiv" class="typeDiv">
 				<div class="titleDiv">
@@ -100,18 +111,6 @@
 				<input type="checkbox" id="ckPelotonResistance" name="ckPelotonResistance" onchange="tgHide('requested_peloton_resistance')">
 				<label for="ckPelotonResistance">Peloton Resistance</label>
 				<input type="number" id="requested_peloton_resistance" name="requested_peloton_resistance" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('requested_peloton_resistance',300)" style="width: 4ch; visibility: hidden" value="0">
-				<br>
-				<label for="ckRamp">Ramp</label>
-				<input type="checkbox" id="ckRamp" name="ckRamp" onchange="tgHide('ramp')">
-
-				<input type="number" id="rampfrom" name="rampfrom" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampfrom',100)" style="width: 4ch; visibility: hidden" value="0">
-				<input type="number" id="rampto" name="rampto" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampto',100)" style="width: 4ch; visibility: hidden" value="0">
-				<br>
-				<input type="radio" id="html" name="fav_language" value="HTML" style="width: 4ch; visibility: hidden">
-			  	<label for="html">HTML</label><br>
-			  	<input type="radio" id="css" name="fav_language" value="CSS">
-			  	<label for="css">CSS</label><br>
-				<!-- ramp speedfrom speedto and powerzonefrom powerzoneto-->
 			</div>
 		</div><!-- typesdiv -->
 		
