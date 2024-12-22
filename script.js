@@ -40,12 +40,24 @@ function resetRow(){
 	document.getElementById('result').innerText="";
 }
 
-function tgHide(idTg){
-	let myEl = document.getElementById(idTg);
-	if(myEl.style.visibility=="hidden"){
-		myEl.style.visibility="visible";
+function tgHide(idTg1,idTg2,idTg3){
+	let myEl1 = document.getElementById(idTg1);
+  let myEl2 = document.getElementById(idTg2);
+  let myEl3 = document.getElementById(idTg3);
+	if(myEl1.style.visibility=="hidden"){
+		myEl1.style.visibility="visible";
 	} else {
-		myEl.style.visibility="hidden";
+		myEl1.style.visibility="hidden";
+	}
+  if(myEl2.style.visibility=="hidden"){
+		myEl2.style.visibility="visible";
+	} else {
+		myEl2.style.visibility="hidden";
+	}
+    if(myEl3.style.visibility=="hidden"){
+		myEl3.style.visibility="visible";
+	} else {
+		myEl3.style.visibility="hidden";
 	}
 	
 }
@@ -113,7 +125,16 @@ function addRow() {
 	}
 	if (document.getElementById('ckPelotonResistance').checked){
 		str += ' requested_peloton_resistance="' + document.getElementById('requested_peloton_resistance').value + '"';
+	} 
+	if (document.getElementById('ckRamp').checked){
+		if(document.getElementById('powerzoneramp').checked){
+    	str += ' powerzonefrom="' + document.getElementById('rampfrom').value + '"' + ' powerzoneto="' + document.getElementById('rampto').value + '"';
+    } else if(document.getElementById('speedramp').checked){ 
+      str += ' speedfrom="' + document.getElementById('rampfrom').value + '"' + ' speedto="' + document.getElementById('rampto').value + '"';
+    }
+    
 	}
+  
 	if (document.getElementById('ckPowerzone').checked){
 		document.getElementById('powerzone').value;
 
