@@ -39,8 +39,7 @@ label {
     margin-right: 10px;
 }
 
-input[type="text"], input[type="number"], select {
-    /*font-size: 14px;*/
+input[type="text"], input[type="number"], select {   
     padding: 8px;
     margin: 5px 0;
     border: 1px solid #dcdfe6;
@@ -58,8 +57,7 @@ div.type-selector {
     margin-bottom: 20px;
 }
 
-select {
-    /*font-size: 14px;*/
+select {    
     padding: 8px;
     margin: 5px 0;
     border: 1px solid #dcdfe6;
@@ -73,7 +71,7 @@ button {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    /*font-size: 14px;*/
+    
     margin: 5px 2px;
     transition: background-color 0.3s ease;
 }
