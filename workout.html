@@ -90,11 +90,15 @@
 				<input type="number" id="rampto" name="rampto" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('rampto',100)" style="width: 7ch; visibility: hidden" value="0">
 				<br>
 				<div id="rampsDiv" style="visibility: hidden">
-			  	<input type="radio" id="powerzoneramp" name="ramps" value="powerzoneramp" checked>
-			  	<label for="powerzoneramp">Powerzone %</label>
-         		 	<input type="radio" id="speedramp" name="ramps" value="speedramp">
-			  	<label for="speedramp">Speed</label>
-        			</div>
+				    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+				        <input type="radio" id="powerzoneramp" name="ramps" value="powerzoneramp" checked>
+				        <label for="powerzoneramp">Powerzone %</label>
+				    </div>
+				    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+				        <input type="radio" id="speedramp" name="ramps" value="speedramp">
+				        <label for="speedramp">Speed</label>
+				    </div>
+				</div>
 			</div>
 			<div id="bikeDiv" class="typeDiv">
 				<div class="titleDiv">
