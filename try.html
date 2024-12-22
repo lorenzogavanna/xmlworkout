@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QDomyos xml workout creator</title>
+    <style>
+		@keyframes blink {
+			0% { opacity: 1; }
+			50% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+    </style>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<form id="workout-form">
+		<div><label>QDomyos xml Workout creator</label></div>
+		<label>Workout Title:</label>
+		<input id="title"></input>
+		<br>
+		  <span>Row Type:</span>
+		  <input type="radio" id="durationType" name="rowType" value="duration" onchange="changeType('durationDiv', 'distanceDiv')" checked>
+		  <label for="durationType">Duration</label>
+		  <input type="radio" id="distanceType" name="rowType" value="distance" onchange="changeType('distanceDiv', 'durationDiv')">
+		  <label for="distanceType">Distance</label>
+		<div class="type-selector" id="distanceDiv" style="display: none">
+			<label for="distance">Distance (km)</label>
+			<input type="number" id="distance" name="distance" inputmode="numeric" pattern="\d*" oninput="ckMax('distance',100)" style="width: 5ch;" value="1">
+		</div>
+		<div class="type-selector" id="durationDiv">
+			<label for="hours">Duration</label>
+            <select id="hours" name="hours">
+                <option disabled selected>00</option>
+            </select>
+            <span>:</span>
+            <select id="minutes" name="minutes">
+                <option disabled selected>00</option>
+            </select>
+            <span>:</span>
+            <select id="seconds" name="seconds">
+                <option disabled selected>01</option>
+            </select>
+        </div>
+		<input type="checkbox" id="ckPid" name="ckPid" onchange="tgHide('pid')">
+		<label for="ckPid">Pid (zone hr 1-5)</label>
+			<select id="pid" name="pid" style="visibility: hidden">
+                <option value="0">0</option>
+                <option value="1" style="background-color:#9bc2e6">1</option>
+                <option selected value="2" style="background-color: #a9d08e">2</option>
+                <option value="3" style="background-color: #ffff8b">3</option>
+                <option value="4" style="background-color: #ff8a33">4</option>
+                <option value="5" style="background-color: #ff4f4f">5</option>
+            </select>	
+		<div class="typesDiv">
+			<div id="runDiv" class="typeDiv">
+				<div class="titleDiv">
+					Run
+				</div>
+				<input type="checkbox" id="ckPowerzone" name="ckPowerzone" onchange="tgHide('powerzone')">
+				<label for="ckPowerzone">Powerzone</label>
+					<select id="powerzone" class="powerzone" name="powerzone" style="visibility: hidden">
+						<option value="1" style="background-color: #d0cece">Z1</option>
+						<option selected value="2" style="background-color: #9bc2e6">Z2</option>
+						<option value="3" style="background-color: #a9d08e">Z3</option>
+						<option value="4" style="background-color: #ffff8b">Z4</option>
+						<option value="5" style="background-color: #ff8a33">Z5</option>
+						<option value="6" style="background-color: #ff4f4f">Z6</option>
+					</select>
+				<br>
+				<input type="checkbox" id="ckSpeed" name="ckSpeed" onchange="tgHide('speed')">
+				<label for="ckSpeed">Speed (km/h)</label>
+				<input type="number" id="speed" name="speed" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('speed',100)" style="width: 4ch; visibility: hidden" value="7">
+				<br>
+				<input type="checkbox" id="ckMaxSpeed" name="ckMaxSpeed" onchange="tgHide('maxspeed')">
+				<label for="ckMaxSpeed">Max Speed (km/h)</label>
+				<input type="number" id="maxspeed" name="maxspeed" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('maxspeed',100)" style="width: 4ch; visibility: hidden" value="12">
+				<br>
+				<input type="checkbox" id="ckInclination" name="ckInclination" onchange="tgHide('inclination')">
+				<label for="ckInclination">Incline</label>
+				<input type="number" id="inclination" name="inclination" inputmode="numeric" pattern="\d*" oninput="ckMax('inclination',100)" style="width: 4ch; visibility: hidden" value="0">
+				<br>
+				<input type="checkbox" id="ckFanspeed" name="ckFanspeed" onchange="tgHide('fanspeed')">
+				<label for="ckFanspeed">Fanspeed</label>
+				<input type="number" id="fanspeed" name="fanspeed" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('fanspeed',100)" style="width: 4ch; visibility: hidden" value="0">
+				<br>
+			</div>
+			<div id="bikeDiv" class="typeDiv">
+				<div class="titleDiv">
+				Bike
+				</div>
+				<input type="checkbox" id="ckCadence" name="ckCadence" onchange="tgHide('cadence')">
+				<label for="ckCadence">Cadence (rpm)</label>
+				<input type="number" id="cadence" name="cadence" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('cadence',300)" style="width: 4ch; visibility: hidden" value="0">
+				<br>
+				<input type="checkbox" id="ckResistance" name="ckResistance" onchange="tgHide('resistance')">
+				<label for="ckResistance">Resistance</label>
+				<input type="number" id="resistance" name="resistance" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('resistance',300)" style="width: 4ch; visibility: hidden" value="0">
+				<br>
+				<input type="checkbox" id="ckPelotonResistance" name="ckPelotonResistance" onchange="tgHide('requested_peloton_resistance')">
+				<label for="ckPelotonResistance">Peloton Resistance</label>
+				<input type="number" id="requested_peloton_resistance" name="requested_peloton_resistance" min="1" inputmode="numeric" pattern="\d*" oninput="ckMax('requested_peloton_resistance',300)" style="width: 4ch; visibility: hidden" value="0">
+				<br>
+			</div>
+		</div><!-- typesdiv -->
+		
+		<label for="repeats">Repeats</label>
+		<input type="number" id="repeats" name="repeats" min="1" inputmode="numeric" pattern="\d*" style="width: 4ch;" value="3">
+		<button type="button" id="startInterval" onclick="startIntervals()">Start Interval</button>			
+		<br>
+		<br>
+		<button type="button" onclick="addRow()">Add row</button>
+        <button type="button" onclick="resetRow()">Reset</button>
+        <button type="button" id="undo" onclick="undoLastRow()">Remove last row</button>
+        <button type="button" id="download" onclick="downloadXML()">Download XML</button>
+		    <p class="resultbox" id="result"></p>
+    </form>
+		<script src="script.js"></script>
+</body>
+</html>
