@@ -36,6 +36,11 @@ function downloadXML() {
 }
 
 function resetRow(){
+	if(document.getElementById("startInterval").textContent=="Start Interval"){
+		document.getElementById("startInterval").style.animation = "none";
+		document.getElementById("startInterval").textContent="Start Interval";
+		document.getElementById("startInterval").style.backgroundColor  = "";	
+	}
 	str="";
 	document.getElementById('result').innerText="";
 }
