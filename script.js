@@ -186,6 +186,62 @@ function undoLastRow(){
 	}
 }
 
+// Add this to the existing JavaScript code
+
+function validateNumberInput(input) {
+    // Remove any non-numeric characters except decimal point
+    input.value = input.value.replace(/[^\d.]/g, '');
+    
+    // Get the min value from the input attribute or default to 0
+    const minValue = input.getAttribute('min') ? parseFloat(input.getAttribute('min')) : 0;
+    
+    // Get the max value from our existing validation or default to Infinity
+    const maxValue = input.getAttribute('data-max') ? parseFloat(input.getAttribute('data-max')) : Infinity;
+    
+    // Convert to number
+    let numValue = parseFloat(input.value);
+    
+    // If empty or invalid, set to minimum value
+    if (isNaN(numValue) || input.value === '') {
+        numValue = minValue;
+    }
+    
+    // Ensure value is within bounds
+    numValue = Math.max(minValue, Math.min(numValue, maxValue));
+    
+    // Update input with validated value
+    input.value = numValue;
+}
+
+// Function to initialize all number inputs with validation
+function initializeNumberInputs() {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+        // Set initial value if empty
+        if (input.value === '') {
+            const minValue = input.getAttribute('min') ? parseFloat(input.getAttribute('min')) : 0;
+            input.value = minValue;
+        }
+        
+        // Add event listeners
+        input.addEventListener('input', () => validateNumberInput(input));
+        input.addEventListener('blur', () => validateNumberInput(input));
+        
+        // Prevent empty value on form submission
+        input.form?.addEventListener('submit', () => validateNumberInput(input));
+    });
+}
+
+// Initialize validation when the document loads
+document.addEventListener('DOMContentLoaded', initializeNumberInputs);
+
+// Update the existing ckMax function to work with the new validation
+function ckMax(id, max) {
+    const input = document.getElementById(id);
+    input.setAttribute('data-max', max);
+    validateNumberInput(input);
+}
+
 function log(a,b,c,d,e,f,g,h,i) { //for 9 log prints
 	console.log(...[a,b,c,d,e,f,g,h,i].filter(value => value !== undefined));
 }
