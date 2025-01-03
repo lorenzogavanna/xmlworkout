@@ -320,12 +320,9 @@
             }
 			document.getElementById("ckPid").addEventListener("change", function () {
 				const looptimehrDiv = document.getElementById("loopDiv");
-
 				if (document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) {
-					console.log("One of the checkboxes is checked");
 					looptimehrDiv.classList.remove("hidden");
 				} else {
-					console.log("Neither checkbox is checked");
 					looptimehrDiv.classList.add("hidden");
 				}
 			});
@@ -334,10 +331,8 @@
 				const looptimehrDiv = document.getElementById("loopDiv");
 
 				if (document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) {
-					console.log("One of the checkboxes is checked");
 					looptimehrDiv.classList.remove("hidden");
 				} else {
-					console.log("Neither checkbox is checked");
 					looptimehrDiv.classList.add("hidden");
 				}
 			});
@@ -390,7 +385,6 @@
                     str += ' zonehr="' + document.getElementById("pid").value + '"';
                 }
                 if ((document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) && document.getElementById("looptimehr").value>0) {
-                    log("faccio anche timehr");
 					str += ' looptimehr="' + document.getElementById("looptimehr").value + '"';
                 }
                 if (document.getElementById("ckSpeed").checked) {
