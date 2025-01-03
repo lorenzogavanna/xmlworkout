@@ -149,8 +149,8 @@
                     <option disabled="disabled" selected="selected">01</option>
                 </select>
             </div>
-            <input type="checkbox" id="ckPid" name="ckPid" onchange='tgHide("pid")' /><label for="ckPid">Pid(zone hr 1-5)</label>
-            <select id="pid" name="pid" class="hidden" onchange='colorOptionBox("pid")'>
+            <input type="checkbox" id="ckPid" name="ckPid" onchange='tgHide("pid")' /><label for="ckPid">Pid(zone hr 1-5)</label>           
+			<select id="pid" name="pid" class="hidden" onchange='colorOptionBox("pid")'>
                 <option id="pid_0" value="0" style="background-color: #fff;">0</option>
                 <option id="pid_1" value="1" style="background-color: #9bc2e6;">1</option>
                 <option id="pid_2" selected="selected" value="2" style="background-color: #a9d08e;">2</option>
@@ -158,6 +158,10 @@
                 <option id="pid_4" value="4" style="background-color: #ff8a33;">4</option>
                 <option id="pid_5" value="5" style="background-color: #ff4f4f;">5</option>
             </select>
+			<input type="checkbox" id="ckHr" name="ckHr" onchange='tgHide("hrmin","hrmax")' /><label for="ckHr">Hr min/max</label>   
+				<input type="number" id="hrmin" name="hrmin" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmin",300)' style="width: 7ch;" value="0" />
+				<input type="number" id="hrmax" name="hrmax" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmax",300)' style="width: 7ch;" value="0" /><br />
+
             <div class="typesDiv">
                 <div id="runDiv" class="typeDiv">
                     <div class="titleDiv">Run</div>
@@ -294,6 +298,18 @@
                     document.getElementById("speed").classList.value = "hidden";
                     document.getElementById("ckSpeed").checked = !1;
                 }
+                if (idTg1 === "hrmin" || idTg2 === "hrmin" || idTg3 === "hrmin") {
+                    document.getElementById("pid").classList.value = "hidden";
+                    document.getElementById("ckPid").checked = !1;
+                } else if (idTg1 === "hrmax" || idTg2 === "hrmax" || idTg3 === "hrmax") {
+                    document.getElementById("pid").classList.value = "hidden";
+                    document.getElementById("ckPid").checked = !1;
+                } else if (idTg1 === "pid" || idTg2 === "pid" || idTg3 === "pid") {
+                    document.getElementById("hrmin").classList.value = "hidden";
+                    document.getElementById("hrmax").classList.value = "hidden";
+                    document.getElementById("ckHr").checked = !1;
+                }				
+				
             }
             function changeType(idShow, idHide) {
                 let myElShow = document.getElementById(idShow);
@@ -330,6 +346,14 @@
                     const distance = document.getElementById("distance").value;
                     str = "";
                     str = str1 + 'distance="' + distance + '"';
+                }
+                if (document.getElementById("ckHr").checked) {
+                    if (document.getElementById("hrmin").value>0){
+						str += ' hrmin="' + document.getElementById("hrmin").value + '"';
+					}
+					if (document.getElementById("hrmax").value>0){
+						str += ' hrmax="' + document.getElementById("hrmax").value + '"';
+					}
                 }
                 if (document.getElementById("ckPid").checked) {
                     str += ' zonehr="' + document.getElementById("pid").value + '"';
