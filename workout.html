@@ -31,6 +31,9 @@
             .hidden {
                 visibility: hidden;
             }
+            .showed {
+                visibility: visible;
+            }
             form {
                 background: #fff;
                 border: 1px solid#dcdfe6;
@@ -161,7 +164,10 @@
 			<input type="checkbox" id="ckHr" name="ckHr" onchange='tgHide("hrmin","hrmax")' /><label for="ckHr">Hr min/max</label>   
 				<input type="number" id="hrmin" name="hrmin" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmin",300)' style="width: 7ch;" value="0" />
 				<input type="number" id="hrmax" name="hrmax" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmax",300)' style="width: 7ch;" value="0" /><br />
-
+					<div id="loopDiv" class="hidden">
+						<label for="looptimehr">Looptime HR</label>  
+						<input type="number" id="looptimehr" name="looptimehr" min="0" inputmode="numeric" oninput='ckMax("looptimehr",300)' style="width: 7ch;" value="0" /><br />
+					</div>
             <div class="typesDiv">
                 <div id="runDiv" class="typeDiv">
                     <div class="titleDiv">Run</div>
@@ -301,6 +307,7 @@
                 if (idTg1 === "hrmin" || idTg2 === "hrmin" || idTg3 === "hrmin") {
                     document.getElementById("pid").classList.value = "hidden";
                     document.getElementById("ckPid").checked = !1;
+					
                 } else if (idTg1 === "hrmax" || idTg2 === "hrmax" || idTg3 === "hrmax") {
                     document.getElementById("pid").classList.value = "hidden";
                     document.getElementById("ckPid").checked = !1;
@@ -308,10 +315,34 @@
                     document.getElementById("hrmin").classList.value = "hidden";
                     document.getElementById("hrmax").classList.value = "hidden";
                     document.getElementById("ckHr").checked = !1;
-                }				
-				
+                }			
+
             }
-            function changeType(idShow, idHide) {
+			document.getElementById("ckPid").addEventListener("change", function () {
+				const looptimehrDiv = document.getElementById("loopDiv");
+
+				if (document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) {
+					console.log("One of the checkboxes is checked");
+					looptimehrDiv.classList.remove("hidden");
+				} else {
+					console.log("Neither checkbox is checked");
+					looptimehrDiv.classList.add("hidden");
+				}
+			});
+
+			document.getElementById("ckHr").addEventListener("change", function () {
+				const looptimehrDiv = document.getElementById("loopDiv");
+
+				if (document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) {
+					console.log("One of the checkboxes is checked");
+					looptimehrDiv.classList.remove("hidden");
+				} else {
+					console.log("Neither checkbox is checked");
+					looptimehrDiv.classList.add("hidden");
+				}
+			});
+
+		function changeType(idShow, idHide) {
                 let myElShow = document.getElementById(idShow);
                 let myElHide = document.getElementById(idHide);
                 if (myElShow.style.display == "none") {
@@ -340,7 +371,7 @@
                     if (hours && minutes && seconds) {
                         str = str1 + 'duration="' + `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}:${seconds.padStart(2, "0")}` + '"';
                     } else {
-                        alert("Please select hours, minutes, and seconds.");
+                        alert("Please set a duration.");
                     }
                 } else {
                     const distance = document.getElementById("distance").value;
@@ -357,6 +388,10 @@
                 }
                 if (document.getElementById("ckPid").checked) {
                     str += ' zonehr="' + document.getElementById("pid").value + '"';
+                }
+                if ((document.getElementById("ckPid").checked || document.getElementById("ckHr").checked) && document.getElementById("looptimehr").value>0) {
+                    log("faccio anche timehr");
+					str += ' looptimehr="' + document.getElementById("looptimehr").value + '"';
                 }
                 if (document.getElementById("ckSpeed").checked) {
                     str += ' speed="' + document.getElementById("speed").value + '"';
