@@ -28,6 +28,10 @@
                 align-items: center;
                 min-height: 100vh;
             }
+			.selectors{
+				width: 8ch;
+				
+			}
             .hidden {
                 visibility: hidden;
             }
@@ -63,11 +67,12 @@
             input[type="number"],
             input[type="text"] {
                 padding: 8px;
+                padding: 5px 1px 5px 1px;
                 margin: 5px 0;
                 border: 1px solid#dcdfe6;
                 border-radius: 4px;
                 width: 100%;
-                max-width: 100px;
+                max-width: 110px;
             }
             input[type="checkbox"] {
                 margin-right: 5px;
@@ -76,6 +81,9 @@
                 margin-top: 10px;
                 margin-bottom: 20px;
             }
+			.inputsDiv{
+				height: 50px;
+			}
             select {
                 padding: 8px;
                 padding: 5px 1px 5px 1px;
@@ -120,7 +128,12 @@
                 input[type="number"],
                 input[type="text"],
                 select {
-                    width: 100%;
+                padding: 8px;
+                padding: 5px 1px 5px 1px;
+                margin: 5px 0;
+                border: 1px solid#dcdfe6;
+                border-radius: 4px;
+                width: 100%;
                 }
                 button {
                     width: 100%;
@@ -132,26 +145,30 @@
     <body>
         <form id="workout-form">
             <div><label>QDomyos xml Workout creator</label></div>
-            <label>Workout Title:</label><input id="title" /><br />
-            <span>Row Type:</span><input type="radio" id="durationType" name="rowType" value="duration" onchange='changeType("durationDiv","distanceDiv")' checked="checked" /><label for="durationType">Duration</label>
-            <input type="radio" id="distanceType" name="rowType" value="distance" onchange='changeType("distanceDiv","durationDiv")' /><label for="distanceType">Distance</label>
-            <div class="type-selector" id="distanceDiv" style="display: none;">
-                <label for="distance">Distance(km)</label><input type="number" id="distance" name="distance" inputmode="numeric" oninput='ckMax("distance",100)' style="width: 8ch;" value="1" />
+            <label>Workout Title:</label><input id="title" /><br>
+            <span>Row Type:</span><br>
+			<div id="slectorsDiv" style="display: flex; align-items: center; gap: 10px;height: 35px;">
+				<input type="radio" id="durationType" name="rowType" value="duration" onchange='changeType("durationDiv","distanceDiv")' checked="checked" /><label for="durationType">Duration</label>
+				<input type="radio" id="distanceType" name="rowType" value="distance" onchange='changeType("distanceDiv","durationDiv")' /><label for="distanceType">Distance(km)</label>
             </div>
-            <div class="type-selector" id="durationDiv">
-                <label for="hours">Duration</label>
-                <select id="hours" name="hours">
-                    <option disabled="disabled" selected="selected">00</option>
-                </select>
-                <span>:</span>
-                <select id="minutes" name="minutes">
-                    <option disabled="disabled" selected="selected">00</option>
-                </select>
-                <span>:</span>
-                <select id="seconds" name="seconds">
-                    <option disabled="disabled" selected="selected">01</option>
-                </select>
-            </div>
+			<div class="inputsDiv" >
+				<div class="type-selector" id="distanceDiv" style="display: none;">
+					<input type="number" id="distance" name="distance" inputmode="numeric" oninput='ckMax("distance",100)' style="width: 8ch; height:20px;" value="1" />
+				</div>
+				<div class="type-selector" id="durationDiv">                
+					<select class="selectors" id="hours" name="hours">
+						<option disabled="disabled" selected="selected">00</option>
+					</select>
+					<span>:</span>
+					<select class="selectors" id="minutes" name="minutes">
+						<option disabled="disabled" selected="selected">00</option>
+					</select>
+					<span>:</span>
+					<select class="selectors" id="seconds" name="seconds">
+						<option disabled="disabled" selected="selected">01</option>
+					</select>
+				</div>
+			</div>
             <input type="checkbox" id="ckPid" name="ckPid" onchange='tgHide("pid")' /><label for="ckPid">Pid(zone hr 1-5)</label>           
 			<select id="pid" name="pid" class="hidden" onchange='colorOptionBox("pid")'>
                 <option id="pid_0" value="0" style="background-color: #fff;">0</option>
@@ -161,12 +178,13 @@
                 <option id="pid_4" value="4" style="background-color: #ff8a33;">4</option>
                 <option id="pid_5" value="5" style="background-color: #ff4f4f;">5</option>
             </select>
+			<br>
 			<input type="checkbox" id="ckHr" name="ckHr" onchange='tgHide("hrmin","hrmax")' /><label for="ckHr">Hr min/max</label>   
 				<input type="number" id="hrmin" name="hrmin" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmin",300)' style="width: 7ch;" value="0" />
-				<input type="number" id="hrmax" name="hrmax" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmax",300)' style="width: 7ch;" value="0" /><br />
+				<input type="number" id="hrmax" name="hrmax" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmax",300)' style="width: 7ch;" value="0" /><br>
 					<div id="loopDiv" class="hidden">
 						<label for="looptimehr">Looptime HR</label>  
-						<input type="number" id="looptimehr" name="looptimehr" min="0" inputmode="numeric" oninput='ckMax("looptimehr",300)' style="width: 7ch;" value="0" /><br />
+						<input type="number" id="looptimehr" name="looptimehr" min="0" inputmode="numeric" oninput='ckMax("looptimehr",300)' style="width: 7ch;" value="0" /><br>
 					</div>
             <div class="typesDiv">
                 <div id="runDiv" class="typeDiv">
@@ -181,36 +199,36 @@
                         <option id="powerzone_5" value="5" style="background-color: #ff8a33;">Z5 105-118%</option>
                         <option id="powerzone_6" value="6" style="background-color: #ff4f4f;">Z6&gt;118%</option>
                     </select>
-                    <br />
+                    <br>
                     <input type="checkbox" id="ckSpeed" name="powerspeed" onchange='tgHide("speed")' /><label for="ckSpeed">Speed(km/h)</label>
-                    <input type="number" id="speed" name="speed" min="0.1" inputmode="numeric" oninput='ckMax("speed",100)' class="hidden" style="width: 7ch;" value="7" /><br />
+                    <input type="number" id="speed" name="speed" min="0.1" inputmode="numeric" oninput='ckMax("speed",100)' class="hidden" style="width: 7ch;" value="7" /><br>
                     <input type="checkbox" id="ckMaxSpeed" name="ckMaxSpeed" onchange='tgHide("maxspeed")' /><label for="ckMaxSpeed">Max Speed(km/h)</label>
-                    <input type="number" id="maxspeed" name="maxspeed" min="0.2" inputmode="numeric" oninput='ckMax("maxspeed",100)' class="hidden" style="width: 7ch;" value="12" /><br />
+                    <input type="number" id="maxspeed" name="maxspeed" min="0.2" inputmode="numeric" oninput='ckMax("maxspeed",100)' class="hidden" style="width: 7ch;" value="12" /><br>
                     <input type="checkbox" id="ckInclination" name="ckInclination" onchange='tgHide("inclination")' /><label for="ckInclination">Incline</label>
-                    <input type="number" id="inclination" name="inclination" inputmode="numeric" oninput='ckMax("inclination",100)' class="hidden" style="width: 7ch;" value="0" /><br />
+                    <input type="number" id="inclination" name="inclination" inputmode="numeric" oninput='ckMax("inclination",100)' class="hidden" style="width: 7ch;" value="0" /><br>
                     <input type="checkbox" id="ckFanspeed" name="ckFanspeed" onchange='tgHide("fanspeed")' /><label for="ckFanspeed">Fanspeed</label>
-                    <input type="number" id="fanspeed" name="fanspeed" min="0.1" inputmode="numeric" oninput='ckMax("fanspeed",100)' class="hidden" style="width: 7ch;" value="0" /><br />
+                    <input type="number" id="fanspeed" name="fanspeed" min="0.1" inputmode="numeric" oninput='ckMax("fanspeed",100)' class="hidden" style="width: 7ch;" value="0" /><br>
                     <input type="checkbox" id="ckRamp" name="powerspeed" onchange='tgHide("rampsDiv")' /><label for="ckRamp">Ramp</label>
                     <div id="rampsDiv" class="hidden">
                         <div style="display: flex; align-items: center; margin-bottom: 5px;"><input type="radio" id="powerzoneramp" name="ramps" value="powerzoneramp" checked="checked" /><label for="powerzoneramp">Powerzone%</label></div>
                         <div style="display: flex; align-items: center; margin-bottom: 5px;"><input type="radio" id="speedramp" name="ramps" value="speedramp" /><label for="speedramp">Speed</label></div>
                         <input type="number" id="rampfrom" name="rampfrom" min="0" inputmode="numeric" oninput='ckMax("rampfrom",100)' style="width: 7ch;" value="0" />
-                        <input type="number" id="rampto" name="rampto" min="0" inputmode="numeric" oninput='ckMax("rampto",100)' style="width: 7ch;" value="0" /><br />
+                        <input type="number" id="rampto" name="rampto" min="0" inputmode="numeric" oninput='ckMax("rampto",100)' style="width: 7ch;" value="0" /><br>
                     </div>
                 </div>
                 <div id="bikeDiv" class="typeDiv">
                     <div class="titleDiv">Bike</div>
                     <input type="checkbox" id="ckCadence" name="ckCadence" onchange='tgHide("cadence")' /><label for="ckCadence">Cadence(rpm)</label>
-                    <input type="number" id="cadence" name="cadence" min="0.1" inputmode="numeric" oninput='ckMax("cadence",300)' class="hidden" style="width: 7ch;" value="0" /><br />
+                    <input type="number" id="cadence" name="cadence" min="0.1" inputmode="numeric" oninput='ckMax("cadence",300)' class="hidden" style="width: 7ch;" value="0" /><br>
                     <input type="checkbox" id="ckResistance" name="ckResistance" onchange='tgHide("resistance")' /><label for="ckResistance">Resistance</label>
-                    <input type="number" id="resistance" name="resistance" min="0.1" inputmode="numeric" oninput='ckMax("resistance",300)' class="hidden" style="width: 7ch;" value="0" /><br />
+                    <input type="number" id="resistance" name="resistance" min="0.1" inputmode="numeric" oninput='ckMax("resistance",300)' class="hidden" style="width: 7ch;" value="0" /><br>
                     <input type="checkbox" id="ckPelotonResistance" name="ckPelotonResistance" onchange='tgHide("requested_peloton_resistance")' /><label for="ckPelotonResistance">Peloton Resistance</label>
                     <input type="number" id="requested_peloton_resistance" name="requested_peloton_resistance" min="0.1" inputmode="numeric" oninput='ckMax("requested_peloton_resistance",300)' class="hidden" style="width: 7ch;" value="0" />
                 </div>
             </div>
             <label for="repeats">Repeats</label><input type="number" id="repeats" name="repeats" min="1" inputmode="numeric" style="width: 7ch;" value="3" />
-            <button type="button" id="startInterval" onclick="startIntervals()">Start Interval</button><br />
-            <br />
+            <button type="button" id="startInterval" onclick="startIntervals()">Start Interval</button><br>
+            <br>
             <button type="button" onclick="addRow()">Add row</button><button type="button" onclick="resetRow()">Reset</button><button type="button" id="undo" onclick="undoLastRow()">Remove last row</button>
             <button type="button" id="download" onclick="downloadXML()">Download XML</button>
             <p class="resultbox" id="result"></p>
