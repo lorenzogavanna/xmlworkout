@@ -65,10 +65,9 @@
             }
             ,
             input[type="number"],
-            input[type="text"] {
-                padding: 8px;
-                padding: 5px 1px 5px 1px;
-                margin: 5px 0;
+            input[type="text"], select {
+                padding: 5px;
+                margin: 5px;
                 border: 1px solid#dcdfe6;
                 border-radius: 4px;
                 width: 100%;
@@ -84,15 +83,7 @@
 			.inputsDiv{
 				height: 50px;
 			}
-            select {
-                padding: 8px;
-                padding: 5px 1px 5px 1px;
-                margin: 5px 0;
-                border: 1px solid#dcdfe6;
-                border-radius: 4px;
-                width: 100%;
-                max-width: 110px;
-            }
+
             button {
                 background-color: #007bff;
                 color: #fff;
@@ -127,13 +118,12 @@
                 }
                 input[type="number"],
                 input[type="text"],
-                select {
-                padding: 8px;
-                padding: 5px 1px 5px 1px;
-                margin: 5px 0;
+                select {               
+                padding: 5px 5px 5px 5px;
+                margin: 5px;
                 border: 1px solid#dcdfe6;
                 border-radius: 4px;
-                width: 100%;
+                width: 93%;			
                 }
                 button {
                     width: 100%;
@@ -147,13 +137,13 @@
             <div><label>QDomyos xml Workout creator</label></div>
             <label>Workout Title:</label><input id="title" /><br>
             <span>Row Type:</span><br>
-			<div id="slectorsDiv" style="display: flex; align-items: center; gap: 10px;height: 35px;">
+			<div id="slectorsDiv" style="display: flex; align-items: center;">
 				<input type="radio" id="durationType" name="rowType" value="duration" onchange='changeType("durationDiv","distanceDiv")' checked="checked" /><label for="durationType">Duration</label>
 				<input type="radio" id="distanceType" name="rowType" value="distance" onchange='changeType("distanceDiv","durationDiv")' /><label for="distanceType">Distance(km)</label>
             </div>
 			<div class="inputsDiv" >
 				<div class="type-selector" id="distanceDiv" style="display: none;">
-					<input type="number" id="distance" name="distance" inputmode="numeric" oninput='ckMax("distance",100)' style="width: 8ch; height:20px;" value="1" />
+					<input type="number" id="distance" name="distance" inputmode="numeric" oninput='ckMax("distance",100)' style="width: 8ch;" value="1" />
 				</div>
 				<div class="type-selector" id="durationDiv">                
 					<select class="selectors" id="hours" name="hours">
@@ -178,7 +168,6 @@
                 <option id="pid_4" value="4" style="background-color: #ff8a33;">4</option>
                 <option id="pid_5" value="5" style="background-color: #ff4f4f;">5</option>
             </select>
-			<br>
 			<input type="checkbox" id="ckHr" name="ckHr" onchange='tgHide("hrmin","hrmax")' /><label for="ckHr">Hr min/max</label>   
 				<input type="number" id="hrmin" name="hrmin" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmin",300)' style="width: 7ch;" value="0" />
 				<input type="number" id="hrmax" name="hrmax" class="hidden" min="0" inputmode="numeric" oninput='ckMax("hrmax",300)' style="width: 7ch;" value="0" /><br>
@@ -190,8 +179,7 @@
                 <div id="runDiv" class="typeDiv">
                     <div class="titleDiv">Run</div>
                     <input type="checkbox" id="ckPowerzone" name="powerspeed" onchange='tgHide("powerzone")' /><label for="ckPowerzone">Powerzone</label>
-                    <select id="powerzone" name="powerzone" class="hidden" onchange='colorOptionBox("powerzone")' style="width: 500px !important;">
-                        >
+                    <select id="powerzone" name="powerzone" class="hidden" onchange='colorOptionBox("powerzone")'>
                         <option id="powerzone_1" value="1" style="background-color: #d0cece;">Z1&lt;60%</option>
                         <option id="powerzone_2" value="2" style="background-color: #9bc2e6;" selected="selected">Z2 60-75%</option>
                         <option id="powerzone_3" value="3" style="background-color: #a9d08e;">Z3 76-89%</option>
