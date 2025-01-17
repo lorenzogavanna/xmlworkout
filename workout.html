@@ -226,6 +226,7 @@
             colorOptionBox("pid");
             let str;
             let str1 = `\n` + "<row ";
+			let isInterval;
             function colorOptionBox(kind) {
                 if ((kind = "pid")) {
                     const select = document.getElementById("pid");
@@ -247,11 +248,13 @@
                     document.getElementById("startInterval").style.backgroundColor = "#F67280";
                     document.getElementById("startInterval").textContent = "Close Interval";
                     document.getElementById("result").innerText += `\n` + '<repeat times="' + document.getElementById("repeats").value + '">';
+					isInterval=1;
                 } else {
                     document.getElementById("startInterval").style.animation = "none";
                     document.getElementById("startInterval").textContent = "Start Interval";
                     document.getElementById("startInterval").style.backgroundColor = "";
                     document.getElementById("result").innerText += `\n` + "</repeat>";
+					isInterval=0;
                 }
             }
             function downloadXML() {
@@ -446,15 +449,22 @@
                 lines.pop();
                 let updatedText = lines.join("\n");
                 document.getElementById("result").innerText = updatedText;
-                if (lastLine == "</repeat>") {
+                if (isInterval || lastLine == "</repeat>") {
                     document.getElementById("startInterval").style.animation = "blink 2s infinite";
                     document.getElementById("startInterval").style.backgroundColor = "#F67280";
                     document.getElementById("startInterval").textContent = "Close Interval";
+					isInterval=1;
                 } else {
                     document.getElementById("startInterval").style.animation = "none";
                     document.getElementById("startInterval").style.backgroundColor = "";
                     document.getElementById("startInterval").textContent = "Start Interval";
+					isInterval=1;
                 }
+				let currentTextN = document.getElementById("result").innerText;
+
+				if(currentTextN==""){
+					resetRow();
+				}
             }
             function validateNumberInput(input) {
                 let value = input.value;
